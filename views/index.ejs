@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Include Bootstrap CSS from CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap/dist/css/bootstrap.min.css">
+    
+    <title>Welcome Page</title>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Welcome</h1>
+        <button id="captureBtn" class="btn btn-primary mt-3">Capture Client Info</button>
+    </div>
+    
+    <!-- Include Bootstrap JS and Popper.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+    
+    <!-- Include Axios from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script>
+        document.getElementById('captureBtn').addEventListener('click', async () => {
+            try {
+                // Capture client information here
+                const clientInfo = {
+                    userAgent: navigator.userAgent,
+                    language: navigator.language,
+                    timestamp: new Date().toLocaleString(),
+                };
+
+                // Send the client information to the server using axios
+                await axios.post('/capture', clientInfo);
+
+                console.log('Client information captured successfully.');
+            } catch (error) {
+                console.error('Error capturing client information:', error);
+            }
+        });
+    </script>
+</body>
+</html>
